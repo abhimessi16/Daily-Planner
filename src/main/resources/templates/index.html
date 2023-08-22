@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Daily Planner</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src="/static/js/main.js"></script>
+</head>
+<body>
+
+    <div id="main">
+        <div id="page">
+            <div id="nav">
+                <h2 class="heading">Daily Planner</h2>
+                <div class="nav-links">
+                    <a class="nav-child" id="your-day" href="#">
+                        <h3><b>Your Day</b></h3>
+                    </a>
+                    <a class="nav-child" id="stats" href="#">
+                        <h3><b>Stats</b></h3>
+                    </a>
+                </div>
+            </div>
+            <div id="scheduler">
+                
+                <div id="add-or-select">
+                    <select id="user-select">
+                        <!-- while sending an ajax call if it succeeds then add the option otherwise maybe some kind of error msg -->
+                        <option disabled value="" selected>Select a planner</option>
+                        <option th:each="user : ${users}" th:value="${user}" th:text="${user}"></option>
+                    </select>
+                    <button id="create-new" onclick="setActive('yourdaytimings')">New Planner</button>
+                </div>
+
+                <div class="slot task-container">
+
+                    <div th:each="timeSlot : ${timeSlots}" class="time-slot">
+                        <div class="tasks-slot">
+                            <div class="times">
+                                <div class="start-time" th:text="${timeSlot.getStartTime()}"></div>
+                            </div>
+                            <div class="task-name" th:each="task : ${timeSlot.getTasks()}" th:text="${task.getTaskName()}">
+                                task 1
+                            </div>
+                        </div>
+                        <div class="time-slot-agenda">
+                            <div class="times">
+                                <div class="end-time" th:text="${timeSlot.getEndTime()}"></div>
+                            </div>
+                            <div class="slot-status-detail">
+                                <div class="completed-tasks" th:text="${timeSlot.getCompletedCount()}"></div>
+                                <div class="nc-tasks" th:text="${timeSlot.getTasks().size() - timeSlot.getCompletedCount()}"></div>
+                            </div>
+                            <div class="all-tasks-count">
+                                <div class="all-tasks" th:text="${timeSlot.getTasks().size()}"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="yourdaytimings" class="day-start-end inactive">
+            <div class="username-section">
+                <h2>Hi, </h2>
+                <input id="username" required type="text"/><br>
+                <h2>.</h2>
+            </div>
+            <h2>Your day starts at 
+                <input id="dayStart" required type="text"/>
+                and ends at <input id="dayEnd" required type="text"/>?
+            </h2>
+            <button id="daySend" onclick="submitUserDetails()" class="btn">Set</button>
+        </div>
+
+        <div id="time-slot-tasks">
+            <div class="close-tasks"><div class="close-button">X</div></div>
+            <h3>Tasks</h3>
+            <div class="tasks-detail">
+                <div class="task-detail" th:each="task : ${tasks}" th:classappend="${'taskid-' + task.getTaskId()}">
+                    <div class="task-name" th:text="${task.getTaskName()}">
+                    </div>
+                    <div class="task-action">
+                        <a href="#" class="action-btn" id="task-done" th:text="${task.getTaskStatus()}"></a>
+                        <a href="#" class="action-btn" id="task-remove">Remove</a>
+                    </div>
+                </div>
+            </div>
+            <div class="create-task">
+                <div class="btn">Add task</div>
+            </div>
+        </div>
+
+        <div id="task-add">
+            <h3>Add a task</h3>
+            <div class="task-form">
+                <label for="name-taskadd">
+                    <h3>Task Name: </h3>
+                </label>
+                <input id="name-taskadd"/>
+                <label for="description-taskadd">
+                    <h3>Task Description: </h3>
+                </label>
+                <textarea id="description-taskadd" rows="7" cols="20"></textarea>
+                <button onclick="addTask()" class="btn">Add the task</button>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -11,9 +11,9 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int taskId;
+    private Integer taskId;
     private String taskName;
-    private int taskFinishTime;
+    private String taskDescription;
 
     @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus;

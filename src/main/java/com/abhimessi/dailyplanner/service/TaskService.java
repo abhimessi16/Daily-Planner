@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -21,12 +22,14 @@ public class TaskService {
         return taskRepository.findByTaskName(taskName);
     }
 
+    public Optional<Task> getTaskById(Integer id) { return taskRepository.findById(id); }
+
     public void deleteTask(String taskName){
         taskRepository.deleteByTaskName(taskName);
     }
 
-    public List<Task> getTasksWithFinishTime(int finishTime){
-        return taskRepository.findByTaskFinishTime(finishTime);
+    public void deleteTaskById(Integer id) {
+        taskRepository.deleteById(id);
     }
 
 }

@@ -9,6 +9,4 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 
     Task findByTaskName(String taskName);
     void deleteByTaskName(String taskName);
-    List<Task> findByTaskFinishTime(int time);
-
 }
