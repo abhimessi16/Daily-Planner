@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Daily Planner</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+
+    <div id="main">
+        <div id="page">
+            <header>
+                <div id="nav">
+                    <h2 class="heading">Daily Planner</h2>
+                    <div class="nav-links">
+                        <a class="nav-child" id="your-day" href="#">
+                            <h3><b>Your Day</b></h3>
+                        </a>
+                        <a class="nav-child" id="stats" href="#">
+                            <h3><b>Stats</b></h3>
+                        </a>
+                    </div>
+                </div>
+            </header>
+            <div id="add-or-select">
+                <select id="user-select">
+                    <!-- while sending an ajax call if it succeeds then add the option otherwise maybe some kind of error msg -->
+                    <option disabled value>Select a planner</option>
+                    <option th:each="user : ${users}" th:value="${user}" th:text="${user}"></option>
+                </select>
+                <button id="create-new" onclick="setActive('yourdaytimings')">New Planner</button>
+            </div>
+            <div id="yourdaytimings" class="day-start-end inactive">
+
+                <div class="username-section">
+                    <h2>Hi, </h2>
+                    <input id="username" required type="text"/><br>
+                    <h2>.</h2>
+                </div>
+                <h2>Your day starts at 
+                    <input id="dayStart" required type="text"/>
+                    and ends at <input id="dayEnd" required type="text"/>?
+                </h2>
+                <button id="daySend" onclick="submitUserDetails()" class="btn">Set</button>
+                
+            </div>
+            <div id="scheduler">
+            </div>
+        </div>
+    </div>
+    <script>
+        // probably find a way to use this in the script file that is .js instead of in html in <script>
+        // function submitUserDetails(){
+        //     var cookies = decodeURIComponent(document.cookie);
+        //     let cookiesSplit = cookies.split(';');
+        //     var userCookie = "user=";
+        
+        //     for(let i = 0; i < cookiesSplit.length; i++){
+        //         let cookie = cookiesSplit[i];
+        //         while (cookie.charAt(0) == ' ') {
+        //             cookie = cookie.substring(1);
+        //         }
+        //         if(cookie.indexOf(userCookie) == 0 && cookie.substring(userCookie.length) == ''){
+        //             setInactive(daystartend);
+        //         }
+        //     }
+        //     console.log('coming here to set active');
+        //     setActive(daystartend);
+        // }
+    </script>
+</body>
+</html>

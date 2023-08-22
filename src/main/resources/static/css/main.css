@@ -1,0 +1,155 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+html, body{
+    width: 100%;
+    height: 100%;
+}
+#main{
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    background-color: #ffffff;
+    /* display: flex; */
+}
+#page{
+    position: relative;
+    /* display: flex; */
+    width: 100%;
+    height: 100%;
+    /* align-items: center; */
+}
+#nav{
+    position: fixed;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px 30px;
+    height: 8vh;
+    background-color: #246fe9;
+}
+.nav-links{
+    position: relative;
+    display: flex;
+    width: 80%;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+.nav-links a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav-links a:hover {
+    background-color: #ffffff;
+}
+.nav-links a.nav-child {
+    width: 15%;
+    height: 100%;
+    vertical-align: middle;
+}
+.nav-links a.nav-child h3 {
+    color: #333;
+    text-align: center;
+    font-size: clamp(20px, 2vw, 32px);
+    font-weight: 400;
+    width: 100%;
+    /* border-color: #e1e1e1; */
+    /* border-style: solid; */
+    /* padding: 0% 10% 0% 10%; */
+}
+.heading{
+    width: 20%;
+    text-align: left;
+}
+#nav h2{
+    position: relative;
+    color: #fff;
+    width: 20%;
+    font-size: clamp(20px, 2vw, 36px);
+    font-weight: 400;
+}
+#add-or-select{
+    position: relative;
+    left: 27%;
+    top: 4%;
+}
+#add-or-select select, button{
+    padding: 5px;
+}
+.day-start-end {
+    width: 40%;
+    background: rgb(140, 15, 48);
+    border-radius: 6px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    padding: 30px;
+    text-align: center;
+    border: #333;
+    border-style: solid;
+    border-width: 1px;
+    /* transform: translate(-50%, -50%) scale(1.0); */
+    color: #222;
+    transition: 0.7s;
+}
+.day-start-end h2{
+    font-weight: 700; 
+    /* padding: 10px;    */
+}
+.day-start-end input{
+    font-size: 17px;
+    padding: 5px;
+    margin: 10px;
+    width: 40%;
+    text-align: left;
+}
+.day-start-end label{
+    font-size: 17px;
+    font-weight: 700;
+    padding: 5px;
+    margin: 10px;
+    text-align: left;
+    display: inline-block;
+    width: 20%;
+}
+.btn{
+    font-size: 20px;
+    font-weight: 700;
+    background-color: #333;
+    color: #fff;
+    border-radius: 12px;
+    justify-self: center;
+    padding: 10px;
+    margin-top: 10px;
+    width: 80%;
+    box-shadow: 0 2px 5px #9c012b;
+}
+.active{
+    transform: translate(-50%, -50%) scale(1.0);
+    visibility: visible;
+    opacity: 100%;
+
+}
+.inactive{
+    transform: translate(-50%, -50%) scale(0.01);
+    visibility: hidden;
+    opacity: 0%;
+    transition: 0.3s;
+}
+.username-section{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#scheduler{
+    position: fixed;
+    top: 50%;
+}
